@@ -8,14 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Strategic Sandstone -->
-    <!-- Application Structure Plan: A single-page, vertically scrolling dashboard with a sticky top navigation. The structure follows a logical narrative: 1. Strategic Overview, 2. Market & Products (including AU-specific problems and personas), 3. Recommended Marketing Tactical Plan (new section), 4. Tactical Sales Flow, 5. Strategic Analysis, 6. CMO's Questions, and 7. AI Strategy Assistant. This structure now provides a complete journey from high-level goals and market analysis, through a concrete marketing plan, to sales execution, strategic review, and AI-powered ideation. -->
+    <!-- Application Structure Plan: A single-page, vertically scrolling dashboard with a sticky top navigation. Key sections include Overview, Market Analysis, a new Tabbed Tactical Marketing Plan, Sales Flow, and Strategic Review. The new tabbed interface for the tactical plan was chosen to organize a high volume of sequential information (quarterly actions) in a compact, user-friendly manner, making it easier to navigate and digest the year-long strategy without overwhelming the user. -->
     <!-- Visualization & Content Choices: 
         - Sales Targets: Bar Chart (Chart.js) to compare annual goals. Goal: Compare.
         - Buyer Personas: Styled cards (HTML/CSS Grid) to organize qualitative data. Goal: Organize.
-        - Marketing Tactical Plan: Quarterly cards with categorized lists (HTML/CSS Grid) to present a clear, actionable timeline. Goal: Organize a process.
+        - Marketing Tactical Plan: A new Tabbed Interface (HTML/CSS/JS) organizes quarterly plans. Each tab contains a sequential list of "touches" that align with the sales goal of 7 interactions in 40 days. This structure visualizes a campaign flow. Goal: Organize a process.
         - Tactical Sales Flow: Interactive Diagram and Matrix (HTML/CSS) for process understanding. Goal: Organize a process.
         - Analysis/Questions: Accordions (HTML/CSS/JS) to manage dense text. Goal: Organize qualitative insights.
-        - AI Assistant: Form elements (HTML/JS) calling the Gemini API for generative AI capabilities. Goal: Augment user creativity.
+        - AI Assistant: Form elements (HTML/JS) for generative AI capabilities. Goal: Augment user creativity.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -57,7 +57,7 @@
         .accordion-arrow {
             transition: transform 0.3s ease-in-out;
         }
-         .loader {
+        .loader {
             border: 4px solid #f3f3f3;
             border-top: 4px solid #A8763E;
             border-radius: 50%;
@@ -69,6 +69,14 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #A8763E;
+            color: white;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -259,115 +267,110 @@
         
         <section id="tactical-plan" class="mb-20 scroll-mt-24">
             <h2 class="text-3xl font-bold text-center mb-4">Recommended Marketing Tactical Plan</h2>
-            <p class="text-center max-w-3xl mx-auto text-gray-600 mb-12">This year-long action plan translates our strategy into concrete marketing activities. It is organized by quarter and focuses on key objectives aligned with our product segments and buyer personas to drive growth.</p>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Q1 -->
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-                    <h3 class="text-xl font-semibold mb-4 text-center">Quarter 1: Foundation & Awareness</h3>
-                    <div class="space-y-4 text-sm">
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Brand Awareness & Thought Leadership</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Launch "The Turning Point" blog series with articles on driveway safety and logistics efficiency.</li>
-                                <li>Secure a feature in a major Australian architectural or design publication for residential turntables.</li>
+            <p class="text-center max-w-3xl mx-auto text-gray-600 mb-12">This year-long action plan translates our strategy into concrete marketing activities. It's structured as a series of campaigns, with each quarter featuring multiple "touches" to warm up leads before direct sales engagement.</p>
+            
+            <div class="w-full max-w-5xl mx-auto">
+                <div class="mb-4 flex space-x-2 p-1 bg-gray-200 rounded-lg">
+                    <button class="tab-button active w-full py-2 px-4 rounded-md font-semibold" data-tab="q1">Quarter 1</button>
+                    <button class="tab-button w-full py-2 px-4 rounded-md font-semibold" data-tab="q2">Quarter 2</button>
+                    <button class="tab-button w-full py-2 px-4 rounded-md font-semibold" data-tab="q3">Quarter 3</button>
+                    <button class="tab-button w-full py-2 px-4 rounded-md font-semibold" data-tab="q4">Quarter 4</button>
+                </div>
+
+                <div id="q1" class="tab-content bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-xl font-semibold mb-4">Q1: Foundation & Residential Focus</h3>
+                    <p class="text-sm text-gray-600 mb-6">Objective: Build foundational content and generate initial awareness, focusing on the high-intent residential market ("Prestige Peter") to secure quick wins.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 border-l-4 border-blue-300 bg-blue-50">
+                            <h4 class="font-bold">Phase 1 (Weeks 1-6): Awareness & Authority Building</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 1-2:</span> Publish two blog posts: "The Ultimate Guide to Driveway Safety in Australia" and "Adding Value to Your Property with Smart Design".</li>
+                                <li><span class="font-semibold">Touch 3:</span> Pitch a feature story to `Domain.com.au` or `RealEstate.com.au` on innovative solutions for challenging properties, showcasing a residential turntable.</li>
                             </ul>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Lead Generation & Nurturing</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Develop downloadable guide: "Council Approval Checklist for Vehicle Access".</li>
-                                <li>Run initial Google Ads campaign targeting keywords for "tight driveway solution".</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Sales Enablement & Support</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Finalize and distribute persona battle cards to the sales team.</li>
-                                <li>Create a standardized ROI calculator for the "Efficiency Eva" logistics persona.</li>
+                         <div class="p-4 border-l-4 border-green-300 bg-green-50">
+                            <h4 class="font-bold">Phase 2 (Weeks 7-12): Lead Capture & Sales Handoff</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 4:</span> Launch downloadable lead magnet: "The Architect's Guide to Council Approval for Vehicle Access".</li>
+                                <li><span class="font-semibold">Touch 5:</span> Run targeted Google & Facebook Ads to homeowners and architects promoting the guide.</li>
+                                <li><span class="font-semibold">Touch 6:</span> Implement a 3-part email nurture sequence for all guide downloaders, sharing case studies and product info.</li>
+                                <li><span class="font-semibold">Touch 7 (Handoff):</span> Qualified leads from the nurture sequence are passed to Sales for their 40-day outreach.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Q2 -->
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-                    <h3 class="text-xl font-semibold mb-4 text-center">Quarter 2: Segment-Specific Push</h3>
-                    <div class="space-y-4 text-sm">
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Brand Awareness & Thought Leadership</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Produce a high-quality video case study of a commercial logistics installation.</li>
-                                <li>Host a webinar on "Improving Site Safety & Efficiency on Construction Projects" with an industry expert.</li>
-                            </ul>
+
+                <div id="q2" class="tab-content hidden bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-xl font-semibold mb-4">Q2: Commercial & Construction Push</h3>
+                    <p class="text-sm text-gray-600 mb-6">Objective: Expand into the B2B space by targeting the logistics ("Efficiency Eva") and construction ("Safety Steve") personas with segment-specific value propositions.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 border-l-4 border-blue-300 bg-blue-50">
+                            <h4 class="font-bold">Phase 1 (Weeks 1-6): Video Content & B2B Engagement</h4>
+                             <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 1:</span> Produce and launch a high-quality video case study of a loading dock turntable installation, focusing on ROI.</li>
+                                <li><span class="font-semibold">Touch 2-3:</span> Promote video via LinkedIn to Logistics and Warehouse managers. Create and share 2 short articles based on the case study results.</li>
+                             </ul>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Lead Generation & Nurturing</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Launch targeted LinkedIn ad campaign for "Safety Steve" promoting the webinar.</li>
-                                <li>Create an email nurture sequence for leads who downloaded the Q1 guide.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Customer Retention & Advocacy</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Launch a referral program for architects and builders in the residential segment.</li>
+                        <div class="p-4 border-l-4 border-green-300 bg-green-50">
+                            <h4 class="font-bold">Phase 2 (Weeks 7-12): High-Value Content & Lead Qualification</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 4:</span> Host a webinar on "Improving WHS and Efficiency on Australian Construction Sites".</li>
+                                <li><span class="font-semibold">Touch 5:</span> Run targeted LinkedIn ads to "Safety Steve" promoting the webinar registration.</li>
+                                <li><span class="font-semibold">Touch 6:</span> Post-webinar, send attendees a follow-up with the recording and an exclusive whitepaper.</li>
+                                <li><span class="font-semibold">Touch 7 (Handoff):</span> Sales follows up with all webinar attendees, prioritizing those who engaged with follow-up materials.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Q3 -->
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-                    <h3 class="text-xl font-semibold mb-4 text-center">Quarter 3: Expansion & Optimization</h3>
-                    <div class="space-y-4 text-sm">
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Brand Awareness & Thought Leadership</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Target mining & resources publications with PR around the Revolva portable turntable.</li>
-                                <li>Exhibit at a national construction or logistics trade show.</li>
+
+                <div id="q3" class="tab-content hidden bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-xl font-semibold mb-4">Q3: Industrial Expansion & Events</h3>
+                    <p class="text-sm text-gray-600 mb-6">Objective: Penetrate the heavy industrial and mining sectors ("Operations Owen") and leverage physical events to generate high-quality leads.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 border-l-4 border-blue-300 bg-blue-50">
+                            <h4 class="font-bold">Phase 1 (Weeks 1-6): Building Credibility in Heavy Industry</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 1:</span> Develop a technical whitepaper on "Maximising Uptime in Underground Mining with Portable Turntables".</li>
+                                <li><span class="font-semibold">Touch 2:</span> Submit articles and press releases to industry publications like `Australian Mining Review`.</li>
+                                <li><span class="font-semibold">Touch 3:</span> Create and promote a video demonstrating the Revolva turntable's ruggedness and portability.</li>
                             </ul>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Lead Generation & Nurturing</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Optimize Google Ads based on Q1 performance and expand to B2B keywords.</li>
-                                <li>Launch a content offer (e.g., whitepaper) focused on the mining sector's unique challenges.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Sales Enablement & Support</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Develop one-page technical spec sheets for each major product, tailored to the relevant persona.</li>
+                         <div class="p-4 border-l-4 border-green-300 bg-green-50">
+                            <h4 class="font-bold">Phase 2 (Weeks 7-12): Trade Show & Lead Capture</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 4:</span> Pre-show email campaign to registered attendees of a major national construction/mining expo.</li>
+                                <li><span class="font-semibold">Touch 5:</span> Exhibit at the expo, focusing on live demos and lead capture (badge scans).</li>
+                                <li><span class="font-semibold">Touch 6:</span> Post-show follow-up email sequence to all captured leads, segmenting by persona.</li>
+                                <li><span class="font-semibold">Touch 7 (Handoff):</span> Sales begins their 40-day sequence with all qualified booth leads.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Q4 -->
-                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-                    <h3 class="text-xl font-semibold mb-4 text-center">Quarter 4: Nurture & Planning</h3>
-                     <div class="space-y-4 text-sm">
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Lead Generation & Nurturing</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Run a year-end promotional campaign for residential turntables targeting holiday builders.</li>
-                                <li>Launch retargeting campaigns on social media for website visitors who didn't convert.</li>
+
+                <div id="q4" class="tab-content hidden bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h3 class="text-xl font-semibold mb-4">Q4: Advocacy, Retention & Planning</h4>
+                    <p class="text-sm text-gray-600 mb-6">Objective: Focus on converting existing pipeline, generating customer advocacy to build social proof, and analyzing performance to plan for the next year.</p>
+                    <div class="space-y-4">
+                         <div class="p-4 border-l-4 border-blue-300 bg-blue-50">
+                            <h4 class="font-bold">Phase 1 (Weeks 1-6): Nurture & Convert Existing Pipeline</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 1-3:</span> Launch retargeting ad campaigns across Google and LinkedIn showcasing testimonials and case studies to website visitors who have not converted.</li>
+                                <li><span class="font-semibold">Touch 4:</span> Send a "year-end solutions" email to all cold/stalled leads, highlighting key benefits and a final call-to-action.</li>
                             </ul>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Customer Retention & Advocacy</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Send a "Thank You" and service reminder email to all customers from the past year.</li>
-                                <li>Systematically request testimonials and online reviews from satisfied customers.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-[#A8763E]">Planning & Analysis</h4>
-                            <ul class="list-disc list-inside mt-1 text-gray-700">
-                                <li>Conduct a full-year marketing performance review and plan for the next fiscal year.</li>
+                         <div class="p-4 border-l-4 border-green-300 bg-green-50">
+                            <h4 class="font-bold">Phase 2 (Weeks 7-12): Customer Advocacy & Strategic Review</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                                <li><span class="font-semibold">Touch 5:</span> Email campaign to all customers from the past year requesting testimonials and Google Reviews.</li>
+                                <li><span class="font-semibold">Touch 6:</span> Send a personalized "Thank You" and service reminder to key accounts, encouraging referrals.</li>
+                                <li><span class="font-semibold">Touch 7 (Internal):</span> Conduct a full-year marketing performance review against KPIs and finalize the strategic plan for the upcoming year.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <section id="flow" class="mb-20 scroll-mt-24">
             <h2 class="text-3xl font-bold text-center mb-4">B2B Tactical Sales Flow</h2>
@@ -533,6 +536,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js for Sales Targets
             const salesData = {
                 labels: ['FY25/26', 'FY26/27', 'FY27/28'],
                 targets: [14.5, 15.5, 18.5]
@@ -554,31 +558,12 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ` $${context.raw}M`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Millions ($)'
-                            }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    }
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ` $${c.raw}M` } } },
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'Millions ($)' } }, x: { grid: { display: false } } }
                 }
             });
 
+            // Tactical Flow Matrix
             const tacticalFlowData = [
                 { stage: 'Awareness', touchpoint: 'Case Studies', action: 'Problem, solution, outcome focused stories', responsible: 'Marketing' },
                 { stage: 'Interest', touchpoint: 'Inbound/Outbound', action: 'First contact via phone/email', responsible: 'Marketing' },
@@ -590,24 +575,35 @@
                 { stage: 'Retention', touchpoint: 'Testimonial', action: 'Ask for review and case study', responsible: 'Marketing' },
                 { stage: 'Retention', touchpoint: 'Service/Upsell', action: 'Service contract and new opportunities', responsible: 'Sales' }
             ];
-
             const matrixBody = document.getElementById('flow-matrix-body');
             tacticalFlowData.forEach(item => {
                 const row = document.createElement('tr');
                 row.className = 'bg-white border-b';
-                row.innerHTML = `
-                    <td class="px-6 py-4 font-medium whitespace-nowrap">${item.stage}</td>
-                    <td class="px-6 py-4">${item.touchpoint}</td>
-                    <td class="px-6 py-4">${item.action}</td>
-                    <td class="px-6 py-4">
-                        <span class="px-2 py-1 text-xs font-semibold rounded-full ${item.responsible === 'Marketing' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}">
-                            ${item.responsible}
-                        </span>
-                    </td>
-                `;
+                row.innerHTML = `<td class="px-6 py-4 font-medium whitespace-nowrap">${item.stage}</td><td class="px-6 py-4">${item.touchpoint}</td><td class="px-6 py-4">${item.action}</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full ${item.responsible === 'Marketing' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'}">${item.responsible}</span></td>`;
                 matrixBody.appendChild(row);
             });
 
+            // Tab functionality for Tactical Plan
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        if (content.id === tabId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Accordion Data and Functionality
             const analysisData = [
                 { title: 'Recommendations', content: '<ul><li class="mb-2"><strong>Segment-Specific Strategies:</strong> Create distinct go-to-market strategies for each major segment (Car vs. Truck) and their sub-markets (e.g., Residential vs. Mining vs. Logistics). They have vastly different buyers and needs.</li><li class="mb-2"><strong>Define Buyer Personas:</strong> Develop detailed personas for each new target segment. A residential homeowner is vastly different from a mining operations manager.</li><li class="mb-2"><strong>Marketing Automation:</strong> Implement a marketing automation platform to nurture leads from "Awareness" to "Interest" before sales handoff, with tailored content streams for each segment.</li><li class="mb-2"><strong>Distributor Enablement:</strong> Develop a formal enablement program for international distributors, including training and marketing collateral specific to the product segments most relevant to their region.</li></ul>' },
                 { title: 'Identified Gaps', content: '<ul><li class="mb-2"><strong>Segment-Specific Tactical Flow:</strong> The current sales flow is generic. It doesn\'t account for the vastly different sales cycles, decision-makers, and value propositions between a residential car turntable and a heavy-duty mining turntable.</li><li class="mb-2"><strong>D2C Segment:</strong> The plan explicitly ignores the Direct-to-Consumer channel, a potentially huge miss for the Residential Car Turntable segment (A.1).</li><li class="mb-2"><strong>Marketing-Sales Handoff (SLA):</strong> The flow lacks a defined Service Level Agreement (SLA). What are the criteria for a Sales Qualified Lead (SQL) for each segment?</li><li class="mb-2"><strong>Content Strategy:</strong> "Case Studies" are mentioned, but a broader content strategy with assets tailored to each specific segment (e.g., ROI calculators for logistics, safety whitepapers for mining) is missing.</li><li class="mb-2"><strong>Metrics & KPIs:</strong> The plan has high-level revenue targets but lacks granular KPIs for each segment and stage of the funnel (e.g., conversion rates, cost per lead, customer lifetime value per segment).</li></ul>' },
@@ -625,15 +621,7 @@
                 data.forEach(item => {
                     const accordionItem = document.createElement('div');
                     accordionItem.className = 'accordion-item bg-white border border-gray-200 rounded-lg overflow-hidden';
-                    accordionItem.innerHTML = `
-                        <button class="accordion-header w-full text-left p-5 flex justify-between items-center font-semibold text-lg hover:bg-gray-50 focus:outline-none">
-                            <span>${item.title}</span>
-                            <span class="accordion-arrow transform transition-transform text-[#A8763E]">&#9660;</span>
-                        </button>
-                        <div class="accordion-content px-5 pb-5 text-gray-700">
-                            ${item.content}
-                        </div>
-                    `;
+                    accordionItem.innerHTML = `<button class="accordion-header w-full text-left p-5 flex justify-between items-center font-semibold text-lg hover:bg-gray-50 focus:outline-none"><span>${item.title}</span><span class="accordion-arrow transform transition-transform text-[#A8763E]">&#9660;</span></button><div class="accordion-content px-5 pb-5 text-gray-700">${item.content}</div>`;
                     container.appendChild(accordionItem);
                 });
             }
@@ -642,12 +630,10 @@
             createAccordion('questions-accordion', questionsData);
 
             document.querySelectorAll('.accordion-header').forEach(button => {
-                button.addEventListener('click', () => {
-                    const accordionItem = button.parentElement;
-                    accordionItem.classList.toggle('open');
-                });
+                button.addEventListener('click', () => button.parentElement.classList.toggle('open'));
             });
 
+            // AI Assistant Gemini API Call
             const generateButton = document.getElementById('generate-button');
             const aiTask = document.getElementById('ai-task');
             const aiContext = document.getElementById('ai-context');
@@ -657,56 +643,27 @@
             const API_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=`;
 
             const prompts = {
-                slogans: {
-                    system: "You are a creative marketing director for an engineering company. Generate 5 short, catchy marketing slogans. Focus on the core benefits mentioned in the user's context.",
-                    user: (context) => `Generate slogans for: ${context}`
-                },
-                pains: {
-                    system: "You are a market research analyst specializing in industrial and residential solutions. Based on the user's context, brainstorm a list of 5 specific, tangible pain points that a potential buyer would experience.",
-                    user: (context) => `Brainstorm buyer pain points for: ${context}`
-                },
-                email: {
-                    system: "You are a senior sales development representative. Write a concise, professional, and compelling cold outreach email. The email should introduce the company (Australian Turntables), reference the buyer's potential problem, propose the solution, and end with a clear call to action (a brief meeting).",
-                    user: (context) => `Draft a cold outreach email for a prospect dealing with: ${context}`
-                },
-                risks: {
-                    system: "You are a business strategist and risk management consultant. Based on the user's context, identify 5 potential business or market risks that the company might face when trying to sell this solution.",
-                    user: (context) => `Identify potential business risks related to selling: ${context}`
-                }
+                slogans: { system: "You are a creative marketing director for an engineering company. Generate 5 short, catchy marketing slogans. Focus on the core benefits mentioned in the user's context.", user: (context) => `Generate slogans for: ${context}` },
+                pains: { system: "You are a market research analyst specializing in industrial and residential solutions. Based on the user's context, brainstorm a list of 5 specific, tangible pain points that a potential buyer would experience.", user: (context) => `Brainstorm buyer pain points for: ${context}` },
+                email: { system: "You are a senior sales development representative. Write a concise, professional, and compelling cold outreach email. The email should introduce the company (Australian Turntables), reference the buyer's potential problem, propose the solution, and end with a clear call to action (a brief meeting).", user: (context) => `Draft a cold outreach email for a prospect dealing with: ${context}` },
+                risks: { system: "You are a business strategist and risk management consultant. Based on the user's context, identify 5 potential business or market risks that the company might face when trying to sell this solution.", user: (context) => `Identify potential business risks related to selling: ${context}` }
             };
 
             async function callGeminiAPI(task, context) {
                 const promptConfig = prompts[task];
-                if (!promptConfig) {
-                    return "Invalid task selected.";
-                }
-
-                const systemInstruction = { parts: [{ text: promptConfig.system }] };
-                const userQuery = promptConfig.user(context);
+                if (!promptConfig) return "Invalid task selected.";
 
                 const payload = {
-                    contents: [{ parts: [{ text: userQuery }] }],
-                    systemInstruction: systemInstruction,
+                    contents: [{ parts: [{ text: promptConfig.user(context) }] }],
+                    systemInstruction: { parts: [{ text: promptConfig.system }] },
                 };
                 
                 try {
-                    const response = await fetch(API_ENDPOINT, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API Error: ${response.status} ${response.statusText}`);
-                    }
-
+                    const response = await fetch(API_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!response.ok) throw new Error(`API Error: ${response.status} ${response.statusText}`);
                     const result = await response.json();
                     const candidate = result.candidates?.[0];
-                    if (candidate && candidate.content?.parts?.[0]?.text) {
-                        return candidate.content.parts[0].text;
-                    } else {
-                        return "Could not generate a response. The model may have returned empty content.";
-                    }
+                    return candidate?.content?.parts?.[0]?.text || "Could not generate a response. The model may have returned empty content.";
                 } catch (error) {
                     console.error("Gemini API call failed:", error);
                     return `Error: Could not retrieve data from the AI. Please check the console for details.`;
