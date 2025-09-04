@@ -10,14 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Neutrals & Deep Blue -->
-    <!-- Application Structure Plan: The application is designed as an interactive, single-page dashboard with thematic sections. This structure was chosen over a linear report to provide a high-level executive summary while allowing for deeper exploration into specific areas like SEO, SEM, and Content. The flow starts with the core "Digital Integrity" philosophy, then breaks down into performance channels (SEO/SEM), connects back to the audience and content strategy, and finishes with a forward-looking roadmap. This user-centric design allows stakeholders to quickly grasp the overall strategy and then dive into the data that interests them most, making the complex information digestible and engaging. -->
+    <!-- Application Structure Plan: The application is designed as an interactive, single-page dashboard with thematic sections. This structure was chosen over a linear report to provide a high-level executive summary while allowing for deeper exploration into specific areas like SEO, SEM, and Content. The flow starts with the core "Digital Integrity" philosophy, breaks down the strategic framework per segment, then dives into performance channels (SEO/SEM), connects back to content performance, and finishes with a forward-looking roadmap. This user-centric design allows stakeholders to quickly grasp the overall strategy and then dive into the data that interests them most, making the complex information digestible and engaging. -->
     <!-- Visualization & Content Choices: 
         - Strategy Cycle (HTML/CSS Diagram): Goal: Organize/Inform. To visually explain the core cyclical methodology. Interaction: Hover reveals details. Justification: A static diagram is the clearest way to introduce the foundational concept. Method: HTML/CSS Flexbox.
+        - Segment Framework (JS Tabs): Goal: Organize/Inform. To detail the practical application of the core strategy for each market segment, showing audience needs, themes, and keywords. Interaction: Clicking tabs reveals segment-specific data. Justification: Tabs are perfect for presenting deep, parallel information sets without cluttering the UI. Method: Vanilla JS.
         - KPI Cards (HTML/CSS): Goal: Inform. Provide a quick, high-impact summary of key metrics. Justification: Immediately grounds the user with top-level performance data. Method: HTML/CSS.
-        - SEM Budget Allocation (Chart.js Donut): Goal: Inform (Proportions). To clearly visualize the strategic monthly budget split. Justification: A donut chart is instantly understandable for showing parts of a whole. Library: Chart.js.
+        - SEM Budget Allocation (Chart.js Donut): Goal: Inform (Proportions). To clearly visualise the strategic monthly budget split. Justification: A donut chart is instantly understandable for showing parts of a whole. Library: Chart.js.
         - Keyword Share of Traffic (Chart.js Stacked Bar): Goal: Compare. To demonstrate the interplay between organic and paid efforts on high-value keywords. Interaction: Dropdown to filter by keyword. Justification: Effectively shows market dominance and strategic defense. Library: Chart.js.
-        - SEO & AI Initiatives (Styled Lists/Text): Goal: Inform. To present key initiatives and long-tail keyword performance clearly. Justification: Textual information is best presented in a structured, readable format. Method: HTML/CSS.
-        - Audience & Content Explorer (JS Tabs): Goal: Organize. To connect target audiences with their corresponding content themes and performance. Interaction: Clicking tabs reveals segment-specific information. Justification: An interactive tab system elegantly organizes a large amount of related information without cluttering the page. Method: Vanilla JS.
         - Future Roadmap (HTML/CSS Timeline): Goal: Inform. To outline future plans in a clear, time-based manner. Justification: A visual timeline is more engaging and easier to follow than a simple list. Method: HTML/CSS.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
@@ -44,10 +43,10 @@
             color: #1E3A8A;
             border-bottom-color: #1E3A8A;
         }
-        .tab-button {
+        .tab-button, .framework-tab-button {
             transition: all 0.3s ease;
         }
-        .tab-button.active {
+        .tab-button.active, .framework-tab-button.active {
             background-color: #1E3A8A;
             color: white;
         }
@@ -66,8 +65,8 @@
             <h1 class="text-2xl font-bold text-gray-800">Digital Strategy Executive Report</h1>
             <div class="hidden md:flex space-x-8">
                 <a href="#strategy" class="nav-link font-medium text-gray-600 pb-1">Strategy</a>
-                <a href="#seo" class="nav-link font-medium text-gray-600 pb-1">SEO</a>
-                <a href="#sem" class="nav-link font-medium text-gray-600 pb-1">SEM</a>
+                <a href="#framework" class="nav-link font-medium text-gray-600 pb-1">Framework</a>
+                <a href="#seo" class="nav-link font-medium text-gray-600 pb-1">SEO & SEM</a>
                 <a href="#content" class="nav-link font-medium text-gray-600 pb-1">Content</a>
                 <a href="#roadmap" class="nav-link font-medium text-gray-600 pb-1">Roadmap</a>
             </div>
@@ -117,499 +116,90 @@
                     <div class="cycle-content bg-white p-4 rounded-xl shadow-md border border-gray-200 h-full">
                         <div class="text-3xl mb-2">📈</div>
                         <h3 class="font-bold text-blue-900">Measure & Refine</h3>
-                        <p class="text-sm text-gray-500">Analyze performance monthly and quarterly to pivot and optimize.</p>
+                        <p class="text-sm text-gray-500">Analyse performance monthly and quarterly to pivot and optimise.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="mb-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-500">Total Users</h3>
-                <p class="text-5xl font-bold text-blue-900" id="total-users">2,347</p>
-                <p class="text-gray-500">(August 2025)</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-500">Engagement Rate</h3>
-                <p class="text-5xl font-bold text-blue-900" id="engagement-rate">72.2%</p>
-                 <p class="text-gray-500">(August 2025)</p>
-            </div>
-            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-500">Total Conversions</h3>
-                <p class="text-5xl font-bold text-blue-900" id="total-conversions">136</p>
-                 <p class="text-gray-500">(August 2025)</p>
-            </div>
-        </section>
-
-        <section id="seo" class="scroll-mt-24 mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900">SEO Performance & Initiatives</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600 mt-4">Our SEO strategy focuses on dominating key search terms, optimising for the rise of AI-powered search, and maintaining technical excellence to drive organic growth.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Keyword Share of Traffic</h3>
-                    <p class="text-gray-600 mb-6">This chart illustrates our combined organic (SEO) and paid (SEM) clicks for core keywords, demonstrating our strategy to defend and dominate high-intent search queries.</p>
-                    <div class="mb-4">
-                        <label for="keyword-select" class="block text-sm font-medium text-gray-700">Select a Keyword:</label>
-                        <select id="keyword-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <option value="car turntable" selected>car turntable</option>
-                            <option value="truck turntable">truck turntable</option>
-                            <option value="car turntable cost">car turntable cost</option>
-                            <option value="driveway turntable">driveway turntable</option>
-                        </select>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="shareOfTrafficChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">AI Search & Geo Initiatives</h3>
-                    <p class="text-gray-600 mb-6">We are proactively optimising for AI search signals and local intent to capture emerging traffic sources and answer user questions directly.</p>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="font-semibold text-lg text-blue-900">Top 5 AI Signals Focus</h4>
-                            <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
-                                <li>Improving content interactivity</li>
-                                <li>Structured data implementation (Schema)</li>
-                                <li>Enhancing E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)</li>
-                                <li>Optimising for conversational, long-tail queries</li>
-                                <li>Mobile-first indexing and page experience</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-lg text-blue-900">Long-Tail Query Performance (Aug 2025)</h4>
-                             <p class="text-sm text-gray-500 mb-2">Our content is ranking for high-intent questions, positioning us as a trusted authority for AI-driven answers.</p>
-                            <ul class="text-gray-600 space-y-2">
-                                <li class="p-3 bg-gray-50 rounded-md">"What makes a high quality car turntable?" <span class="font-bold text-green-600 float-right">Position #2</span></li>
-                                <li class="p-3 bg-gray-50 rounded-md">"How much should I pay for a car turntable?" <span class="font-bold text-orange-500 float-right">Position #7</span></li>
-                            </ul>
-                            <p class="text-xs text-gray-500 mt-3">An AI seeding initiative is in progress for residential markets to address price-related queries and justify our premium positioning.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sem" class="scroll-mt-24 mb-20">
+        <section id="framework" class="scroll-mt-24 mb-20">
              <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900">SEM Performance & Investment</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600 mt-4">Our monthly investment of ~$1600 AUD is strategically allocated to defend brand territory, capture segment-specific leads, and retarget engaged users across the funnel.</p>
+                <h2 class="text-4xl font-bold text-gray-900">Strategic Framework by Segment</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600 mt-4">This is how the Digital Integrity Optimisation framework is applied to each key segment, translating audience needs into targeted themes and keywords that cover the full buyer's journey.</p>
             </div>
-             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Monthly Budget Allocation</h3>
-                    <p class="text-gray-600 mb-6">The budget is intentionally split to cover defensive, segment-focused, and retargeting objectives, with additional budget boosts for specific campaigns every 2-3 months.</p>
-                    <div class="chart-container" style="height: 380px;">
-                        <canvas id="budgetAllocationChart"></canvas>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-                     <h3 class="text-2xl font-bold text-gray-800 mb-2">Campaign Performance by Segment</h3>
-                    <p class="text-gray-600 mb-6">Analysis of campaign results shows how our segment-based spending translates into clicks and conversions, allowing for continuous optimisation.</p>
-                     <div class="chart-container" style="height: 380px;">
-                        <canvas id="campaignPerformanceChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="content" class="scroll-mt-24 mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900">Audience & Content Strategy</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600 mt-4">We create targeted content that addresses the specific needs and challenges of each buyer persona, ensuring relevance and driving engagement throughout their journey.</p>
-            </div>
-            
+
             <div>
-                <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
-                    <button class="tab-button active font-semibold py-2 px-4 rounded-full" data-tab="residential">Residential</button>
-                    <button class="tab-button font-semibold py-2 px-4 rounded-full" data-tab="construction">Construction</button>
-                    <button class="tab-button font-semibold py-2 px-4 rounded-full" data-tab="loading-docks">Loading Docks</button>
-                    <button class="tab-button font-semibold py-2 px-4 rounded-full" data-tab="spinsy">Spinsy</button>
+                <div class="flex justify-center flex-wrap gap-2 md:gap-4 mb-8">
+                    <button class="framework-tab-button active font-semibold py-2 px-4 rounded-full" data-tab="residential">Residential</button>
+                    <button class="framework-tab-button font-semibold py-2 px-4 rounded-full" data-tab="construction">Construction</button>
+                    <button class="framework-tab-button font-semibold py-2 px-4 rounded-full" data-tab="loading-docks">Loading Docks</button>
+                    <button class="framework-tab-button font-semibold py-2 px-4 rounded-full" data-tab="spinsy">Spinsy</button>
                 </div>
-                <div id="tab-content" class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 min-h-[300px]">
-                    <div class="tab-pane active" id="content-residential">
-                        <h3 class="text-2xl font-bold text-gray-800">Residential Segment</h3>
-                        <p class="text-gray-600 mt-2">Focusing on luxury, space-saving, and property value enhancement.</p>
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Target Personas</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>Home Owners</li>
-                                    <li>Architects</li>
-                                    <li>Builders</li>
+                <div id="framework-tab-content" class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 min-h-[400px]">
+                    <div class="framework-tab-pane active" id="framework-residential">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Audience Needs & Pains</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Homeowners:</span> Seek aesthetic appeal, space optimisation, and increased property value. Fear difficult installations.</li>
+                                    <li><span class="font-semibold">Architects:</span> Desire seamless integration, customisation, and technical specs. Object to solutions that compromise design.</li>
+                                    <li><span class="font-semibold">Builders:</span> Need reliability, easy installation, and strong warranties. Concerned about project delays and costs.</li>
                                 </ul>
-                           </div>
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Top Performing Content</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>Tips for selecting a car turntable</li>
-                                    <li>Comprehensive guide on car turntables</li>
-                                    <li>Maximize your car garage space</li>
-                                </ul>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane hidden" id="content-construction">
-                        <h3 class="text-2xl font-bold text-gray-800">Construction Segment</h3>
-                        <p class="text-gray-600 mt-2">Highlighting safety, efficiency on tight sites, and durability.</p>
-                         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Target Personas</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>Project Managers</li>
-                                    <li>Architects</li>
-                                    <li>Site Operations Managers</li>
-                                </ul>
-                           </div>
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Top Performing Content</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>A closer look at safety and risks in construction</li>
-                                     <li>Comprehensive guide on truck turntables</li>
-                                </ul>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane hidden" id="content-loading-docks">
-                       <h3 class="text-2xl font-bold text-gray-800">Loading Docks Segment</h3>
-                       <p class="text-gray-600 mt-2">Emphasizing traffic flow optimization, safety compliance, and ROI.</p>
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Target Personas</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>Warehouse Operators</li>
-                                    <li>Developers & Facility Managers</li>
-                                    <li>Logistics Firms</li>
-                                </ul>
-                           </div>
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Top Performing Content</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>How to design functional and efficient loading docks</li>
-                                    <li>Top solutions for improving vehicle management</li>
-                                </ul>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane hidden" id="content-spinsy">
-                         <h3 class="text-2xl font-bold text-gray-800">Spinsy Segment</h3>
-                       <p class="text-gray-600 mt-2">Focusing on DIY-friendliness, modern aesthetics, and ease of use for homeowners.</p>
-                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Target Personas</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>Home Owners (Tech-savvy)</li>
-                                </ul>
-                           </div>
-                           <div>
-                                <h4 class="font-semibold text-lg text-blue-900">Top Performing Content</h4>
-                                <ul class="list-disc list-inside mt-2 text-gray-600">
-                                    <li>Making turntables easy: Spinsy</li>
-                                </ul>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="roadmap" class="scroll-mt-24">
-             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900">Future Initiatives & Roadmap</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-600 mt-4">Our strategy is dynamic. Key upcoming initiatives will expand our digital footprint, deepen audience engagement, and solidify our market leadership.</p>
-            </div>
-            <div class="relative">
-                <div class="border-l-2 border-blue-300 absolute h-full top-0 left-1/2 -ml-px"></div>
-                <div class="space-y-12">
-                    <div class="flex justify-center items-center">
-                        <div class="w-full md:w-1/2 p-4 flex justify-end">
-                            <div class="w-full md:w-11/12 bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
-                                <p class="text-gray-500 text-sm">Q1 FY26 (Jul-Sep 2025)</p>
-                                <h3 class="font-bold text-lg">Website Expansion</h3>
-                                <p class="text-gray-600 text-sm">Develop and launch new landing pages structured by solution (industry) and persona.</p>
                             </div>
-                        </div>
-                        <div class="w-1/2 p-4 hidden md:block"></div>
-                    </div>
-
-                    <div class="flex justify-center items-center">
-                         <div class="w-1/2 p-4 hidden md:block"></div>
-                        <div class="w-full md:w-1/2 p-4 flex justify-start">
-                             <div class="w-full md:w-11/12 bg-white p-6 rounded-xl shadow-lg border-r-4 border-green-500">
-                                <p class="text-gray-500 text-sm">Q2 FY26 (Oct-Dec 2025)</p>
-                                <h3 class="font-bold text-lg">Social Media Activation</h3>
-                                <p class="text-gray-600 text-sm">Launch targeted campaigns: TikTok/IG for Spinsy, and LinkedIn/Meta for B2B segments (pending budget).</p>
+                             <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Core Strategic Themes</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Luxury & Aesthetics:</span> Elevating property design and value.</li>
+                                    <li><span class="font-semibold">Space Optimisation:</span> Solving parking challenges in tight spaces.</li>
+                                    <li><span class="font-semibold">Innovation & Quality:</span> Showcasing superior engineering and materials.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Target Keywords</h4>
+                                 <ul class="text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Awareness:</span> "driveway turntable", "garage turntable ideas", "parking solutions for homes"</li>
+                                    <li><span class="font-semibold">Consideration:</span> "car turntable cost", "car turntable price australia", "residential car turntable"</li>
+                                 </ul>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flex justify-center items-center">
-                        <div class="w-full md:w-1/2 p-4 flex justify-end">
-                            <div class="w-full md:w-11/12 bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500">
-                                <p class="text-gray-500 text-sm">Q3 FY26 (Jan-Mar 2026)</p>
-                                <h3 class="font-bold text-lg">Digital PR & Off-Page SEO</h3>
-                                <p class="text-gray-600 text-sm">Invest in digital PR to increase Domain Authority (DA) and build high-quality referral traffic.</p>
+                    <div class="framework-tab-pane hidden" id="framework-construction">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Audience Needs & Pains</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Project Managers:</span> Focus on site efficiency, safety, and avoiding delays. Concerned with installation timelines.</li>
+                                    <li><span class="font-semibold">Engineers:</span> Require detailed technical specs, load capacity data, and reliability.</li>
+                                    <li><span class="font-semibold">Site Managers:</span> Need to reduce vehicle reversing, improve traffic flow, and ensure worker safety.</li>
+                                </ul>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Core Strategic Themes</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Safety & Compliance:</span> Eliminating reversing dangers on-site.</li>
+                                    <li><span class="font-semibold">Efficiency & Productivity:</span> Speeding up truck cycle times and logistics.</li>
+                                    <li><span class="font-semibold">Durability & Reliability:</span> Built for the toughest construction environments.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Target Keywords</h4>
+                                 <ul class="text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Awareness:</span> "construction site logistics", "heavy vehicle safety", "tight site access solutions"</li>
+                                    <li><span class="font-semibold">Consideration:</span> "truck turntable", "heavy duty turntable", "hire truck turntable"</li>
+                                 </ul>
                             </div>
                         </div>
-                        <div class="w-1/2 p-4 hidden md:block"></div>
                     </div>
-                     <div class="flex justify-center items-center">
-                         <div class="w-1/2 p-4 hidden md:block"></div>
-                        <div class="w-full md:w-1/2 p-4 flex justify-start">
-                             <div class="w-full md:w-11/12 bg-white p-6 rounded-xl shadow-lg border-r-4 border-orange-500">
-                                <p class="text-gray-500 text-sm">Q4 FY26 (Apr-Jun 2026)</p>
-                                <h3 class="font-bold text-lg">New Segment Expansion</h3>
-                                <p class="text-gray-600 text-sm">Begin strategic framework implementation for Mining, Tunnelling, and B2B Residential segments.</p>
+                    <div class="framework-tab-pane hidden" id="framework-loading-docks">
+                       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h4 class="font-bold text-lg text-blue-900 mb-3">Audience Needs & Pains</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                                    <li><span class="font-semibold">Developers:</span> Seek cost-saving solutions, ROI, and modern facility design. Fear high upfront investment.</li>
+                                    <li><span class="font-semibold">Warehouse Operators:</span> Need to maximise throughput, reduce downtime, and improve safety.</li>
+                                    <li><span class="font-semibold">Logistics Firms:</span> Desire faster loading/unloading times and optimised vehicle management.</li>
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-<footer class="bg-white border-t mt-20">
-    <div class="container mx-auto px-6 py-4 text-center text-gray-500">
-        <p>&copy; 2025 Digital Strategy Report. All data is representative for August 2025.</p>
-    </div>
-</footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const shareOfTrafficData = {
-        'car turntable': { labels: ['Organic SEO', 'Paid SEM'], data: [68, 62], searches: 880 },
-        'truck turntable': { labels: ['Organic SEO', 'Paid SEM'], data: [9, 0], searches: 390 },
-        'car turntable cost': { labels: ['Organic SEO', 'Paid SEM'], data: [21, 18], searches: 110 },
-        'driveway turntable': { labels: ['Organic SEO', 'Paid SEM'], data: [8, 13], searches: 880 }
-    };
-
-    const budgetAllocationData = {
-        labels: ['Defend Positions', 'Residential', 'Loading Docks', 'Spinsy', 'Construction', 'Retargeting'],
-        data: [10, 20, 20, 10, 20, 20]
-    };
-
-    const campaignPerformanceData = {
-        labels: ['Residential', 'Construction', 'Loading Docks'],
-        clicks: [161, 11, 98],
-        cost: [143.75, 13.26, 189.68]
-    };
-
-    let shareOfTrafficChartInstance;
-
-    function renderShareOfTrafficChart(keyword) {
-        const ctx = document.getElementById('shareOfTrafficChart').getContext('2d');
-        const data = shareOfTrafficData[keyword];
-        
-        if (shareOfTrafficChartInstance) {
-            shareOfTrafficChartInstance.destroy();
-        }
-
-        shareOfTrafficChartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Clicks'],
-                datasets: [
-                    {
-                        label: 'Organic SEO',
-                        data: [data.data[0]],
-                        backgroundColor: '#3B82F6',
-                    },
-                    {
-                        label: 'Paid SEM',
-                        data: [data.data[1]],
-                        backgroundColor: '#10B981',
-                    }
-                ]
-            },
-            options: {
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        stacked: true,
-                        title: { display: true, text: 'Number of Clicks' }
-                    },
-                    y: {
-                        stacked: true
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: `Clicks for "${keyword}" (Total Searches: ${data.searches})`,
-                        font: { size: 16 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.x !== null) {
-                                    label += context.parsed.x + ' clicks';
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    function renderBudgetAllocationChart() {
-        const ctx = document.getElementById('budgetAllocationChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: budgetAllocationData.labels,
-                datasets: [{
-                    data: budgetAllocationData.data,
-                    backgroundColor: ['#1E3A8A', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE', '#DBEAFE'],
-                    borderColor: '#F8F7F4',
-                    borderWidth: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Strategic Monthly Budget Split',
-                        font: { size: 16 }
-                    },
-                    tooltip: {
-                         callbacks: {
-                            label: function(context) {
-                                let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += context.raw + '%';
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    function renderCampaignPerformanceChart() {
-        const ctx = document.getElementById('campaignPerformanceChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: campaignPerformanceData.labels,
-                datasets: [{
-                    label: 'Clicks',
-                    data: campaignPerformanceData.clicks,
-                    backgroundColor: '#3B82F6',
-                    yAxisID: 'y'
-                }, {
-                    label: 'Cost (AUD)',
-                    data: campaignPerformanceData.cost,
-                    backgroundColor: '#10B981',
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                         title: { display: true, text: 'Clicks' }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                         title: { display: true, text: 'Cost (AUD)' }
-                    },
-                },
-                 plugins: {
-                    title: {
-                        display: true,
-                        text: 'Performance by Segment (Aug 2025)',
-                        font: { size: 16 }
-                    }
-                }
-            }
-        });
-    }
-
-
-    document.getElementById('keyword-select').addEventListener('change', function(e) {
-        renderShareOfTrafficChart(e.target.value);
-    });
-
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            const tabId = `content-${button.dataset.tab}`;
-            tabPanes.forEach(pane => {
-                if (pane.id === tabId) {
-                    pane.classList.remove('hidden');
-                    pane.classList.add('active');
-                } else {
-                    pane.classList.add('hidden');
-                    pane.classList.remove('active');
-                }
-            });
-        });
-    });
-    
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('main section');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.4
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === entry.target.id) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    renderShareOfTrafficChart('car turntable');
-    renderBudgetAllocationChart();
-    renderCampaignPerformanceChart();
-});
-</script>
-
-</body>
-</html>
+                             <div>
+                                <h4 class="font
 
